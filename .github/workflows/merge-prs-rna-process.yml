@@ -33,6 +33,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-pr-message: 'The pull request has been labelled as ready for automerge, as it has been open for 7 days without objection.'
         days-before-stale: 1
+        # TODO: change to 7 in prod
         days-before-issue-stale: -1
         # we don't want this to run on issues, only PRs
         days-before-close: -1
@@ -43,8 +44,6 @@ jobs:
         exempt-pr-labels: 'question,wontfix,invalid,duplicate,objection'
         remove-stale-when-updated: false
         ignore-updates: true
-        debug-only: true
-        # use the create date only
 
   automerge:
     runs-on: ubuntu-latest
