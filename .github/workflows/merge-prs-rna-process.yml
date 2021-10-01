@@ -48,10 +48,14 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: reitermarkus/automerge@v1.5.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          merge-method: rebase
-          do-not-merge-labels: question,wontfix,invalid,duplicate
-          required-labels: automerge
-          pull-request: ${{ github.event.inputs.pull-request }}
+      - uses: pascalgn/automerge-action@v0.14.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: "automerge,!question,!wontfix,!invalid,!duplicate"
+          MERGE_REMOVE_LABELS: "automerge"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
+          MERGE_REQUIRED_APPROVALS: "0"
+          UPDATE_LABELS: "automerge"
+          MERGE_DELETE_BRANCH: true
